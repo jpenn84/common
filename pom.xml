@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.joshualeepenn</groupId>
-    <artifactId>commom</artifactId>
+    <artifactId>common</artifactId>
     <version>1.0.0</version>
 
     <properties>
