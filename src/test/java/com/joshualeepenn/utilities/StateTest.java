@@ -59,8 +59,20 @@ public class StateTest {
                 State.VA
         );
         sa.assertEquals(
+                State.getStateByNameOrAbbreviation("Fl"),
+                State.FL
+        );
+        sa.assertEquals(
+                State.getStateByNameOrAbbreviation("oh"),
+                State.OH
+        );
+        sa.assertEquals(
                 State.getStateByNameOrAbbreviation("California"),
                 State.CA
+        );
+        sa.assertEquals(
+                State.getStateByNameOrAbbreviation("MISSOURI"),
+                State.MO
         );
         sa.assertAll();
     }
@@ -105,16 +117,47 @@ public class StateTest {
         State.getStateByFipsCode("99");
     }
 
-    @Test(expectedExceptions = RuntimeException.class,
+    @Test(expectedExceptions = IllegalArgumentException.class,
             expectedExceptionsMessageRegExp = "fipsCode String must be a number")
     public void getStateByFipsCodeStringNotANumberTest() {
         State.getStateByFipsCode("fff");
     }
 
     @Test(expectedExceptions = ClassCastException.class,
-            expectedExceptionsMessageRegExp = "fipsCode must be a number express as a String or an integer")
+            expectedExceptionsMessageRegExp = "fipsCode must be a number express as a String or a Number")
     public void getStateByFipsCodeStringNotAStringOrIntegerTest() {
         Object o = new Object();
         State.getStateByFipsCode(o);
+    }
+
+    @Test
+    public void getStateByCapitalTest()
+    {
+        SoftAssert sa = new SoftAssert();
+        sa.assertEquals(
+                State.getStateByCapital("Richmond"),
+                State.VA
+        );
+        sa.assertEquals(
+                State.getStateByCapital("WASHINGTON"),
+                State.DC
+        );
+        sa.assertEquals(
+                State.getStateByCapital("honolulu"),
+                State.HI
+        );
+        sa.assertAll();
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class,
+            expectedExceptionsMessageRegExp = "No state with capital \"Pittsburgh\" found")
+    public void getStateByCapitalNotFoundTest() {
+        State.getStateByCapital("Pittsburgh");
+    }
+
+    @Test(expectedExceptions = NullPointerException.class,
+            expectedExceptionsMessageRegExp = "Capital cannot be null")
+    public void getStateByCapitalNullTest() {
+        State.getStateByCapital(null);
     }
 }

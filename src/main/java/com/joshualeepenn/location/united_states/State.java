@@ -4,64 +4,66 @@ package com.joshualeepenn.location.united_states;
  * States of The United States of America.
  */
 public enum State {
-    AL("Alabama", 1),
-    AK("Alaska", 2),
-    AZ("Arizona", 4),
-    AR("Arkansas", 5),
-    CA("California", 6),
-    CO("Colorado", 8),
-    CT("Connecticut", 9),
-    DE("Delaware", 10),
-    DC("District of Columbia", 11),
-    FL("Florida", 12),
-    GA("Georgia", 13),
-    HI("Hawaii", 15),
-    ID("Idaho", 16),
-    IL("Illinois", 17),
-    IN("Indiana", 18),
-    IA("Iowa", 19),
-    KA("Kansas", 20),
-    KY("Kentucky", 21),
-    LA("Louisiana", 22),
-    ME("Maine", 23),
-    MD("Maryland", 24),
-    MA("Massachusetts", 25),
-    MI("Michigan", 26),
-    MN("Minnesota", 27),
-    MS("Mississippi", 28),
-    MO("Missouri", 29),
-    MT("Montana", 30),
-    NE("Nebraska", 31),
-    NV("Nevada", 32),
-    NH("New Hampshire", 33),
-    NJ("New Jersey", 34),
-    NM("New Mexico", 35),
-    NY("New York", 36),
-    NC("North Carolina", 37),
-    ND("North Dakota", 38),
-    OH("Ohio", 39),
-    OK("Oklahoma", 40),
-    OR("Oregon", 41),
-    PA("Pennsylvania", 42),
-    RI("Rhode Island", 44),
-    SC("South Carolina", 45),
-    SD("South Dakota", 46),
-    TN("Tennessee", 47),
-    TX("Texas", 48),
-    UT("Utah", 49),
-    VT("Vermont", 50),
-    VA("Virginia", 51),
-    WA("Washington", 53),
-    WV("West Virginia", 54),
-    WI("Wisconsin", 55),
-    WY("Wyoming", 56);
+    AL("Alabama", 1, "Montgomery"),
+    AK("Alaska", 2, "Juneau"),
+    AZ("Arizona", 4, "Phoenix"),
+    AR("Arkansas", 5, "Little Rock"),
+    CA("California", 6, "Sacramento"),
+    CO("Colorado", 8, "Denver"),
+    CT("Connecticut", 9, "Hartford"),
+    DE("Delaware", 10, "Dover"),
+    DC("District of Columbia", 11, "Washington"),
+    FL("Florida", 12, "Tallahassee"),
+    GA("Georgia", 13, "Atlanta"),
+    HI("Hawaii", 15, "Honolulu"),
+    ID("Idaho", 16, "Boise"),
+    IL("Illinois", 17, "Springfield"),
+    IN("Indiana", 18, "Indianapolis"),
+    IA("Iowa", 19, "Des Moines"),
+    KA("Kansas", 20, "Topeka"),
+    KY("Kentucky", 21, "Frankfort"),
+    LA("Louisiana", 22, "Baton Rouge"),
+    ME("Maine", 23, "Augusta"),
+    MD("Maryland", 24, "Annapolis"),
+    MA("Massachusetts", 25, "Boston"),
+    MI("Michigan", 26, "Lansing"),
+    MN("Minnesota", 27, "Saint Paul"),
+    MS("Mississippi", 28, "Jackson"),
+    MO("Missouri", 29, "Jefferson City"),
+    MT("Montana", 30, "Helena"),
+    NE("Nebraska", 31, "Lincoln"),
+    NV("Nevada", 32, "Carson City"),
+    NH("New Hampshire", 33, "Concord"),
+    NJ("New Jersey", 34, "Trenton"),
+    NM("New Mexico", 35, "Santa Fe"),
+    NY("New York", 36, "Albany"),
+    NC("North Carolina", 37, "Raleigh"),
+    ND("North Dakota", 38, "Bismarck"),
+    OH("Ohio", 39, "Columbus"),
+    OK("Oklahoma", 40, "Oklahoma City"),
+    OR("Oregon", 41, "Salem"),
+    PA("Pennsylvania", 42, "Harrisburg"),
+    RI("Rhode Island", 44, "Providence"),
+    SC("South Carolina", 45, "Columbia"),
+    SD("South Dakota", 46, "Pierre"),
+    TN("Tennessee", 47, "Nashville"),
+    TX("Texas", 48, "Austin"),
+    UT("Utah", 49, "Salt Lake City"),
+    VT("Vermont", 50, "Montpelier"),
+    VA("Virginia", 51, "Richmond"),
+    WA("Washington", 53, "Olympia"),
+    WV("West Virginia", 54, "Charleston"),
+    WI("Wisconsin", 55, "Madison"),
+    WY("Wyoming", 56, "Cheyenne");
 
     private final String name;
     private final int fipsCodeInteger;
+    private final String capital;
 
-    State(String name, int fipsCodeInteger) {
+    State(String name, int fipsCodeInteger, String capital) {
         this.name = name;
         this.fipsCodeInteger = fipsCodeInteger;
+        this.capital = capital;
     }
 
     /**
@@ -94,17 +96,26 @@ public enum State {
     /**
      * Get the state's postal abbreviation.
      *
-     * @return The Abbreviation.
+     * @return The abbreviation.
      */
     public String getAbbreviation() {
         return this.name();
     }
 
     /**
+     * Get the state's capital.
+     *
+     * @return The capital.
+     */
+    public String getCapital() {
+        return capital;
+    }
+
+    /**
      * Get the state by name or abbreviation. Ignores case.
      *
      * @param nameOrAbbreviation The state's name or abbreviation.
-     * @return The State.
+     * @return The state.
      */
     public static State getStateByNameOrAbbreviation(String nameOrAbbreviation) {
         if (nameOrAbbreviation.length() == 2)
@@ -116,7 +127,7 @@ public enum State {
      * Get the state by name. Ignores case.
      *
      * @param name The state's name.
-     * @return The State.
+     * @return The state.
      */
     public static State getStateByName(String name) {
         for (State state : State.values())
@@ -130,7 +141,7 @@ public enum State {
      * Get the state by abbreviation. Ignores case.
      *
      * @param abbreviation The state's abbreviation.
-     * @return The State.
+     * @return The state.
      */
     public static State getStateByAbbreviation(String abbreviation) {
         for (State state : State.values())
@@ -144,7 +155,7 @@ public enum State {
      * Get the state by FIPS code.
      *
      * @param fipsCode The FIPS Code, as a Number or String type.
-     * @return The State.
+     * @return The state.
      */
     public static <T> State getStateByFipsCode(T fipsCode) {
         int fipsCodeInteger;
@@ -159,11 +170,26 @@ public enum State {
             }
         }
         else
-            throw new ClassCastException("fipsCode must be a number express as a String or an integer");
+            throw new ClassCastException("fipsCode must be a number express as a String or a Number");
 
         for (State state : State.values())
             if (state.fipsCodeInteger == fipsCodeInteger)
                 return state;
         throw new IllegalArgumentException("No state with fips code \"" + fipsCode + "\" found");
+    }
+
+    /**
+     * Get the state by capital.
+     *
+     * @param capital The capital of the state.
+     * @return The state.
+     */
+    public static State getStateByCapital(String capital) {
+        if (null == capital)
+            throw new NullPointerException("Capital cannot be null");
+        for (State state : State.values())
+            if (capital.equalsIgnoreCase(state.getCapital()))
+                return state;
+        throw new IllegalArgumentException("No state with capital \"" + capital + "\" found");
     }
 }
