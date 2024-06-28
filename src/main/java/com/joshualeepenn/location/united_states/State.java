@@ -1,9 +1,12 @@
 package com.joshualeepenn.location.united_states;
 
+import com.joshualeepenn.constants.Whitespace;
+
 /**
  * States of The United States of America.
  */
 public enum State {
+    /* States */
     AL("Alabama", 1, "Montgomery"),
     AK("Alaska", 2, "Juneau"),
     AZ("Arizona", 4, "Phoenix"),
@@ -12,7 +15,6 @@ public enum State {
     CO("Colorado", 8, "Denver"),
     CT("Connecticut", 9, "Hartford"),
     DE("Delaware", 10, "Dover"),
-    DC("District of Columbia", 11, "Washington"),
     FL("Florida", 12, "Tallahassee"),
     GA("Georgia", 13, "Atlanta"),
     HI("Hawaii", 15, "Honolulu"),
@@ -54,7 +56,21 @@ public enum State {
     WA("Washington", 53, "Olympia"),
     WV("West Virginia", 54, "Charleston"),
     WI("Wisconsin", 55, "Madison"),
-    WY("Wyoming", 56, "Cheyenne");
+
+    /* Federal District */
+    DC("District of Columbia", 11, "Washington"),
+
+    /* Territories */
+    WY("Wyoming", 56, "Cheyenne"),
+    AS("American Samoa", 60, "Pago Pago"),
+    FM("Federated States of Micronesia", 64, "Palikir"),
+    GU("Guam", 66, "Hagatna"),
+    MH("Marshall Islands", 68, "Majuro"),
+    MP("Northern Mariana Islands", 59, "Saipan"),
+    PW("Palau", 70, "Ngerulmud"),
+    PR("Puerto Rico", 72, "San Juan"),
+    UM("U.S. Minor Outlying Islands", 74, Whitespace.EMPTY),
+    VI("U.S. Virgin Islands", 78, "Charlotte Amalie");
 
     private final String name;
     private final int fipsCodeInteger;

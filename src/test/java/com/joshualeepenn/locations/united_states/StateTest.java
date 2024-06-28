@@ -146,6 +146,10 @@ public class StateTest {
                 State.getStateByCapital("honolulu"),
                 State.HI
         );
+        sa.assertEquals(
+                State.getStateByCapital(null),
+                State.HI
+        );
         sa.assertAll();
     }
 
