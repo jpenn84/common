@@ -77,6 +77,25 @@ public class StateTest {
                 State.AK,
                 "Get state by FIPS Code Integer Failure"
         );
+        sa.assertEquals(
+                State.getStateByFipsCode(4L),
+                State.AZ,
+                "Get state by FIPS Code Long Failure"
+        );
+
+        double d = 5.1;
+        sa.assertEquals(
+                State.getStateByFipsCode(d),
+                State.AR,
+                "Get state by FIPS Code Double Failure"
+        );
+
+        float f = 6.2F;
+        sa.assertEquals(
+                State.getStateByFipsCode(f),
+                State.CA,
+                "Get state by FIPS Code Float Failure"
+        );
         sa.assertAll();
     }
 

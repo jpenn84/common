@@ -143,14 +143,14 @@ public enum State {
     /**
      * Get the state by FIPS code.
      *
-     * @param fipsCode The FIPS Code, as an Integer or String type.
+     * @param fipsCode The FIPS Code, as a Number or String type.
      * @return The State.
      */
     public static <T> State getStateByFipsCode(T fipsCode) {
         int fipsCodeInteger;
 
-        if (fipsCode.getClass().equals(Integer.class)) {
-            fipsCodeInteger = (Integer) fipsCode;
+        if (Number.class.isAssignableFrom(fipsCode.getClass())) {
+            fipsCodeInteger = ((Number) fipsCode).intValue();
         } else if (fipsCode.getClass() == String.class) {
             try {
                 fipsCodeInteger = Integer.parseInt((String) fipsCode);
