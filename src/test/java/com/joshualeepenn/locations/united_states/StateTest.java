@@ -1,4 +1,4 @@
-package com.joshualeepenn.utilities;
+package com.joshualeepenn.locations.united_states;
 
 import com.joshualeepenn.location.united_states.State;
 import org.testng.Assert;
